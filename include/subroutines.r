@@ -18,3 +18,13 @@ loadContaminationProbabilityMatrix <- function (contaminationProbabilityPath)
   
   return (contaminationProbabilityMatrix);
 }
+
+loadNodeRanksFromFile <- function(rankingFile) {
+  inputRanking <- read.table(rankingFile, header=FALSE, sep=" ");
+  numRows <- nrow(inputRanking);
+  outputRanking = numeric(numRows);
+  for (i in 1:numRows) {
+    outputRanking[inputRanking[i,1]+1] <- inputRanking[i,3];
+  }
+  return(outputRanking);
+}
